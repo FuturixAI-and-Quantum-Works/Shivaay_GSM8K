@@ -4,6 +4,8 @@ This repository contains the evaluation code and results for the **GSM8K Benchma
 
 Shivaay ranked 11th on PapersWithCode SOTA (State-of-the-Art) Leaderboard for GSM8K (Models not using extra dataset) scoring **87.41**
 
+![image](https://github.com/user-attachments/assets/b155ff4a-5b60-4b14-ba45-94061f9dc46e)
+
 ## Metrics
 
 - **Evaluation Method**: 8-Shot Testing with Chain-of-Thought Reasoning
