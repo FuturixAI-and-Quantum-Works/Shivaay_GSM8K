@@ -7,8 +7,13 @@ from utils import download_url, load_jsonl
 import argparse
 import requests
 import urllib3
+from dotenv import load_dotenv
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+load_dotenv()
+
+APIKEY = os.getenv("APIKEY")
 
 
 ANS_RE = re.compile(r"#### (\-?[0-9\.\,]+)")
@@ -242,7 +247,7 @@ def ask_question(input_text):
     url = "https://api_v2.futurixai.com/api/lara/v1/completion"
     headers = {
         "Content-Type": "application/json",
-        "api-subscription-key": "d2dd3849-bb28-42b5-8bb6-a550f84a999d",
+        "api-subscription-key": APIKEY,
     }
     payload = {
         "messages": [
@@ -311,7 +316,9 @@ def main():
                 complete_response.append(responsejson)
 
                 # Calculate accuracy
-                accuracy = float(sum(answers)) / len(answers) if len(answers) > 0 else 0.0
+                accuracy = (
+                    float(sum(answers)) / len(answers) if len(answers) > 0 else 0.0
+                )
 
                 # Update the progress bar's postfix with the current accuracy
                 pbar.set_postfix({"Accuracy": f"{accuracy:.2%}"})
